@@ -256,12 +256,13 @@ section {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 15px 32px;
+  padding: clamp(11px, 2.5vw, 15px) clamp(20px, 5vw, 32px);
   border-radius: 999px;
   font-family: var(--font-corpo);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.82rem, 3.5vw, 0.95rem);
   letter-spacing: 0.02em;
+  white-space: nowrap;
   background: var(--rosa-escuro);
   color: var(--branco);
   transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -280,11 +281,12 @@ section {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 15px 32px;
+  padding: clamp(11px, 2.5vw, 15px) clamp(20px, 5vw, 32px);
   border-radius: 999px;
   font-family: var(--font-corpo);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+  white-space: nowrap;
   color: var(--teal-escuro);
   border: 2px solid var(--teal);
   background: transparent;
@@ -341,21 +343,22 @@ section {
 .btn-cta-wpp {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: #25D366;
   color: var(--branco);
-  padding: 18px 42px;
+  padding: clamp(13px, 2.8vw, 18px) clamp(24px, 6vw, 42px);
   border-radius: 999px;
-  font-size: 1.05rem;
+  font-size: clamp(0.85rem, 3.8vw, 1.05rem);
   font-weight: 700;
   font-family: var(--font-corpo);
+  white-space: nowrap;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   position: relative;
   z-index: 1;
 }
 
 .btn-cta-wpp i {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 4vw, 1.3rem);
 }
 
 .btn-cta-wpp:hover {
@@ -1740,6 +1743,7 @@ section#especiais {
   flex-direction: column;
   gap: 2px;
   flex: 1;
+  min-width: 0; /* permite o filho flex encolher abaixo do tamanho do conteúdo */
 }
 
 .contato-cards-hero .contato-card-title {
@@ -1834,6 +1838,8 @@ section#especiais {
   font-weight: 500;
   color: var(--teal);
   margin-top: 4px;
+  overflow-wrap: break-word; /* quebra somente quando necessário */
+  word-break: break-all;     /* e-mails e URLs não têm espaços — break-all garante a quebra */
 }
 
 .contato-badge {
@@ -2411,18 +2417,16 @@ section#especiais {
     font-size: 1.6rem;
   }
 
-  .btn-primary,
-  .btn-secondary,
-  .btn-outline,
   .btn-cta-wpp {
-    font-size: 0.9rem;
-    padding: 12px 24px;
+    /* clamp() já cuida do tamanho — apenas centralizamos no mobile */
+    justify-content: center;
+    max-width: 100%;
   }
 
   .hero-btns {
     flex-direction: column;
     width: 100%;
-    gap: 20px;
+    gap: 12px;
   }
 
   .hero-btns a {
@@ -2467,6 +2471,123 @@ section#especiais {
 
   .float-badge span {
     font-size: 1.8rem;
+  }
+
+  /* Fix seção "Quem sou" — evita transbordamento horizontal */
+  .sobre-teaser-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .sobre-teaser-emoji {
+    width: 72px;
+    height: 72px;
+    font-size: 3rem;
+  }
+
+  /* btn-cta-wpp ajuste mobile */
+  .btn-cta-wpp {
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Cards 2 colunas: reduzir texto e padding para caber */
+  .produto-nome {
+    font-size: 1rem;
+  }
+
+  .produto-corpo {
+    padding: 12px;
+    gap: 4px;
+  }
+
+  .produto-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  /* Carousel buttons menores para cards em 2 colunas */
+  .carousel .btn-carousel,
+  .carousel button.prev,
+  .carousel button.next {
+    width: 26px;
+    height: 26px;
+    font-size: 0.65rem;
+  }
+
+  .carousel .btn-carousel.prev,
+  .carousel button.prev {
+    left: 4px;
+  }
+
+  .carousel .btn-carousel.next,
+  .carousel button.next {
+    right: 4px;
+  }
+}
+
+/* === Mobile pequeno (≤ 480px) — Samsung Galaxy M51 e similares === */
+@media (max-width: 480px) {
+  /* 1 coluna para produtos: imagens maiores e legíveis */
+  .grid-destaques {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Proporção mais larga para foto em card full-width */
+  .produto-img-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Restaurar tamanhos melhores para cards em 1 coluna */
+  .produto-nome {
+    font-size: 1.2rem;
+  }
+
+  .produto-corpo {
+    padding: 20px;
+    gap: 8px;
+  }
+
+  .produto-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* Restaurar carousel buttons para tamanho confortável */
+  .carousel .btn-carousel,
+  .carousel button.prev,
+  .carousel button.next {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .carousel .btn-carousel.prev,
+  .carousel button.prev {
+    left: 10px;
+  }
+
+  .carousel .btn-carousel.next,
+  .carousel button.next {
+    right: 10px;
+  }
+
+  /* Seção sobre-teaser: alinhar ao centro em tela pequena */
+  .sobre-teaser-inner {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sobre-teaser-texto .section-title {
+    text-align: center;
+  }
+
+  .sobre-teaser-texto p {
+    text-align: center;
   }
 }
 
