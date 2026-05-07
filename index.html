@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA4_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA4_MEASUREMENT_ID');
+  </script>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ateliê Bia Feltros — peças artesanais em feltro feitas com amor. Bonecas, guirlandas, chaveiros e muito mais. Feito à mão para você." />
+  <title>Ateliê Bia Feltros — Criando com amor, feito à mão para você</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/atelie-bia-feltros-logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/atelie-bia-feltros-logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/atelie-bia-feltros-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="nav-container">
+
+      <a href="index.html" class="brand-link" aria-label="Ateliê Bia Feltros - Página inicial">
+        <img src="assets/atelie-bia-feltros-logo.png" alt="Ateliê Bia Feltros" class="logo" width="80" height="80" />
+        <div class="brand-text">
+          <span class="brand-name">Bia Feltros</span>
+          <span class="brand-sub">Feito à mão com amor</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-navigation" id="main-nav" aria-label="Navegação principal">
+        <ul class="nav-links" role="list">
+          <li><a href="index.html" class="active" aria-current="page">Início</a></li>
+          <li><a href="products.html">Produtos</a></li>
+          <li><a href="about.html">Sobre</a></li>
+          <li><a href="contact.html">Contato</a></li>
+          <li class="nav-cta">
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Apresentação">
+      <div class="hero-container">
+        <div class="hero-texto">
+          <div class="hero-eyebrow">Artesanato em feltro</div>
+
+          <h1 class="hero-title">
+            Peças exclusivas feitas<br />
+            <em>com amor e carinho,</em><br />
+            <span class="destaque">para você</span>
+          </h1>
+
+          <p class="hero-desc">
+            Cada peça é criada à mão com carinho, feltro de qualidade e muita dedicação.
+            Bonecas, guirlandas, chaveiros e decorações que encantam e emocionam.
+          </p>
+
+          <div class="hero-btns">
+            <a href="products.html" class="btn-primary">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              Ver todos os produtos
+            </a>
+            <a href="https://wa.me/5519953321819?text=Olá%2C%20quero%20fazer%20um%20pedido!" target="_blank" rel="noopener" class="btn-secondary">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              Falar comigo
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">5★</div>
+              <div class="stat-label">Avaliação</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Feito à mão</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-logo-wrap">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+
+            <img src="assets/atelie-bia-feltros-logo.png" alt="Ateliê Bia Feltros" class="hero-img-center" />
+
+            <div class="float-badge float-badge-1">
+              <span>🧸</span>
+              <small>Bonecas</small>
+            </div>
+            <div class="float-badge float-badge-2">
+              <span>🌿</span>
+              <small>Guirlandas</small>
+            </div>
+            <div class="float-badge float-badge-3">
+              <span>🔑</span>
+              <small>Chaveiros</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FAIXA ===== -->
+    <div class="faixa-valores" aria-hidden="true">
+      <div class="faixa-track">
+        <!-- duplicado para loop contínuo -->
+        <div class="faixa-item"><span>🧶</span> Feltro premium <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>💝</span> Feito à mão <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>🎁</span> Personalizável <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>📦</span> Enviamos para todo Brasil <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>⭐</span> Qualidade artesanal <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>💌</span> Presenteie com carinho <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>🧶</span> Feltro premium <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>💝</span> Feito à mão <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>🎁</span> Personalizável <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>📦</span> Enviamos para todo Brasil <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>⭐</span> Qualidade artesanal <span class="faixa-sep">✦</span></div>
+        <div class="faixa-item"><span>💌</span> Presenteie com carinho <span class="faixa-sep">✦</span></div>
+      </div>
+    </div>
+
+    <!-- ===== CATEGORIAS ===== -->
+    <section class="categorias" aria-labelledby="titulo-categorias">
+      <div class="container">
+        <div class="categorias-header">
+          <div>
+            <div class="section-tag">Nossas criações</div>
+            <h2 class="section-title" id="titulo-categorias">
+              Explore nossas <em>categorias</em>
+            </h2>
+            <p class="section-desc">
+              De bonecas encantadoras a livros sensoriais educativos. 
+              Cada peça é única e feita especialmente para você.
+            </p>
+          </div>
+          <a href="products.html" class="link-ver-tudo">
+            Ver catálogo completo <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <div class="grid-categorias" role="list">
+
+          <a href="products.html#bonecas" class="cat-card fade-in" role="listitem" aria-label="Bonecas em feltro">
+            <img src="assets/Boneca Elsa 1.jpg" alt="Boneca Elsa em feltro" class="cat-img" />
+            <div class="cat-info">
+              <span class="cat-nome">Bonecas</span>
+              <span class="cat-desc">Personagens únicos e cheios de charme</span>
+            </div>
+          </a>
+
+          <a href="products.html#guirlandas" class="cat-card fade-in fade-in-delay-1" role="listitem" aria-label="Guirlandas decorativas">
+            <img src="assets/guirlanda verde.jpg" alt="Guirlandas decorativas" class="cat-img" />
+            <div class="cat-info">
+              <span class="cat-nome">Guirlandas</span>
+              <span class="cat-desc">Decoração artesanal para sua casa</span>
+            </div>
+          </a>
+
+          <a href="products.html#livros" class="cat-card fade-in fade-in-delay-2" role="listitem" aria-label="Livros sensoriais">
+            <img src="assets/Livro Sensorial Natal 2.jpg" alt="Livro Sensorial Natal — capa" class="cat-img" />
+            <div class="cat-info">
+              <span class="cat-nome">Livros Sensoriais</span>
+              <span class="cat-desc">Educativos e interativos para crianças</span>
+            </div>
+          </a>
+
+          <a href="products.html#especiais" class="cat-card fade-in fade-in-delay-1" role="listitem" aria-label="Produtos especiais">
+            <img src="assets/Raposinha.jpg" alt="Produtos especiais" class="cat-img" />
+            <div class="cat-info">
+              <span class="cat-nome">Especiais</span>
+              <span class="cat-desc">Criações únicas e personalizadas</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUEM SOU — TEASER ===== -->
+    <section class="sobre-section sobre-teaser" aria-labelledby="titulo-sobre">
+      <div class="container">
+        <div class="sobre-teaser-inner">
+          <div class="sobre-teaser-emoji" aria-hidden="true">🪡</div>
+          <div class="sobre-teaser-texto">
+            <div class="section-tag">Quem sou</div>
+            <h2 class="section-title" id="titulo-sobre">
+              Transformando feltro em <em>arte</em>
+            </h2>
+            <p>
+              Sou a Bia, artesã apaixonada por criar peças únicas em feltro.
+              Cada criação leva um pedacinho do meu coração e muita dedicação —
+              do primeiro corte à última pontada.
+            </p>
+            <a href="about.html" class="btn-secondary" style="margin-top: 8px;">
+              Conheça minha história <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="depoimentos" aria-labelledby="titulo-depoimentos">
+      <div class="container">
+
+        <div class="depoimentos-header">
+          <div class="section-tag center">Avaliações</div>
+          <h2 class="section-title" id="titulo-depoimentos" style="text-align: center;">
+            Clientes <em>satisfeitos</em>
+          </h2>
+        </div>
+
+        <div class="grid-depoimentos">
+
+          <div class="depoimento-card fade-in">
+            <div class="estrelas">★★★★★</div>
+            <p class="depoimento-texto">
+              "A boneca ficou perfeita! Qualidade impecável e entrega super rápida. 
+              Minha filha amou cada detalhe!"
+            </p>
+            <div class="depoimento-autor">
+              <div class="autor-avatar rosa">C</div>
+              <div>
+                <span class="autor-nome">Carla Mendonça</span>
+                <span class="autor-local">Campinas, SP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="depoimento-card destaque fade-in fade-in-delay-1">
+            <div class="estrelas">★★★★★</div>
+            <p class="depoimento-texto">
+              "Guirlanda linda! Fez toda diferença na decoração. A Bia é super 
+              atenciosa e caprichosa. Recomendo muito!"
+            </p>
+            <div class="depoimento-autor">
+              <div class="autor-avatar claro">P</div>
+              <div>
+                <span class="autor-nome">Patrícia Lima</span>
+                <span class="autor-local">São Paulo, SP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="depoimento-card fade-in fade-in-delay-2">
+            <div class="estrelas">★★★★★</div>
+            <p class="depoimento-texto">
+              "Livro sensorial perfeito para meu filho! Ele adora brincar. 
+              Produto educativo e muito bem feito."
+            </p>
+            <div class="depoimento-autor">
+              <div class="autor-avatar teal">J</div>
+              <div>
+                <span class="autor-nome">Juliana Santos</span>
+                <span class="autor-local">Jundiaí, SP</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" aria-labelledby="titulo-cta">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-tag">Faça seu pedido</div>
+          <h2 class="cta-titulo" id="titulo-cta">
+            Quer uma peça <em>personalizada?</em>
+          </h2>
+          <p class="cta-desc">
+            Entre em contato e vamos criar juntos algo único e especial. 
+            Personalizo cores, tamanhos e todos os detalhes que você imaginar!
+          </p>
+          <a
+            href="https://wa.me/5519953321819?text=Olá%2C%20Bia!%20Gostaria%20de%20fazer%20um%20pedido%20personalizado."
+            class="btn-cta-wpp"
+            target="_blank"
+            rel="noopener"
+            aria-label="Falar com a Bia pelo WhatsApp"
+          >
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            Conversar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div class="footer-logo-wrap">
+            <img src="assets/atelie-bia-feltros-logo.png" alt="Ateliê Bia Feltros" class="footer-logo-img" width="52" height="52" />
+            <span class="footer-brand-name">Bia Feltros</span>
+          </div>
+          <p class="footer-brand-desc">
+            Criando peças artesanais em feltro com amor e dedicação.
+            Cada detalhe é feito à mão, do coração para as suas mãos.
+          </p>
+          <div class="footer-social">
+            <a href="https://instagram.com/biankacriz" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram da Bia Feltros">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/5519953321819" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp da Bia Feltros">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:feitocomfeltrobybia@gmail.com" class="social-btn" aria-label="E-mail da Bia Feltros">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Produtos</h3>
+          <ul class="footer-links">
+            <li><a href="products.html#bonecas">Bonecas</a></li>
+            <li><a href="products.html#guirlandas">Guirlandas</a></li>
+            <li><a href="products.html#livros">Livros Sensoriais</a></li>
+            <li><a href="products.html#especiais">Especiais</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Navegação</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="products.html">Todos os Produtos</a></li>
+            <li><a href="about.html">Sobre Mim</a></li>
+            <li><a href="contact.html">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Contato</h3>
+          <ul class="footer-contato-list">
+            <li>
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <a href="https://wa.me/5519953321819" target="_blank" rel="noopener">(19) 95332-1819</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <a href="mailto:feitocomfeltrobybia@gmail.com">feitocomfeltrobybia@gmail.com</a>
+            </li>
+            <li>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <a href="https://instagram.com/biankacriz" target="_blank" rel="noopener">@biankacriz</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Ateliê Bia Feltros · Feito com <span>♥</span> e muito feltro
+          · Todos os direitos reservados
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

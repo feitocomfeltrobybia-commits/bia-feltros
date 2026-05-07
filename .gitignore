@@ -1,0 +1,16 @@
+# Ambientes virtuais
+.venv/
+venv/
+
+# Pastas de cache
+__pycache__/
+.sixth/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.swp
+
+# Configurações locais
+.DS_Store
+Thumbs.db
