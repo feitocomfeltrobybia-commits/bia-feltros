@@ -20,6 +20,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/atelie-bia-feltros-logo.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/atelie-bia-feltros-logo.png" />
 
+  <!-- Preload de recursos críticos -->
+  <link rel="preload" as="image" href="assets/atelie-bia-feltros-logo.png" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
@@ -106,7 +110,7 @@
             <div class="orbit orbit-1"></div>
             <div class="orbit orbit-2"></div>
 
-            <img src="assets/atelie-bia-feltros-logo.png" alt="Ateliê Bia Feltros" class="hero-img-center" />
+            <img src="assets/atelie-bia-feltros-logo.png" alt="Ateliê Bia Feltros" class="hero-img-center" fetchpriority="high" />
 
             <div class="float-badge float-badge-1">
               <span>🧸</span>
@@ -167,7 +171,7 @@
         <div class="grid-categorias" role="list">
 
           <a href="products.html#bonecas" class="cat-card fade-in" role="listitem" aria-label="Bonecas em feltro">
-            <img src="assets/Boneca Elsa 1.jpg" alt="Boneca Elsa em feltro" class="cat-img" />
+            <img src="assets/Boneca Elsa 1.jpg" alt="Boneca Elsa em feltro" class="cat-img" loading="lazy" />
             <div class="cat-info">
               <span class="cat-nome">Bonecas</span>
               <span class="cat-desc">Personagens únicos e cheios de charme</span>
@@ -175,7 +179,7 @@
           </a>
 
           <a href="products.html#guirlandas" class="cat-card fade-in fade-in-delay-1" role="listitem" aria-label="Guirlandas decorativas">
-            <img src="assets/guirlanda verde.jpg" alt="Guirlandas decorativas" class="cat-img" />
+            <img src="assets/guirlanda verde.jpg" alt="Guirlandas decorativas" class="cat-img" loading="lazy" />
             <div class="cat-info">
               <span class="cat-nome">Guirlandas</span>
               <span class="cat-desc">Decoração artesanal para sua casa</span>
@@ -183,7 +187,7 @@
           </a>
 
           <a href="products.html#livros" class="cat-card fade-in fade-in-delay-2" role="listitem" aria-label="Livros sensoriais">
-            <img src="assets/Livro Sensorial Natal 2.jpg" alt="Livro Sensorial Natal — capa" class="cat-img" />
+            <img src="assets/Livro Sensorial Natal 2.jpg" alt="Livro Sensorial Natal — capa" class="cat-img" loading="lazy" />
             <div class="cat-info">
               <span class="cat-nome">Livros Sensoriais</span>
               <span class="cat-desc">Educativos e interativos para crianças</span>
@@ -191,7 +195,7 @@
           </a>
 
           <a href="products.html#especiais" class="cat-card fade-in fade-in-delay-1" role="listitem" aria-label="Produtos especiais">
-            <img src="assets/Raposinha.jpg" alt="Produtos especiais" class="cat-img" />
+            <img src="assets/Raposinha.jpg" alt="Produtos especiais" class="cat-img" loading="lazy" />
             <div class="cat-info">
               <span class="cat-nome">Especiais</span>
               <span class="cat-desc">Criações únicas e personalizadas</span>
