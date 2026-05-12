@@ -6,11 +6,32 @@ venv/
 __pycache__/
 .sixth/
 
-# Arquivos temporários
+# Metadados do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependências (caso futuramente usar Node/npm)
+node_modules/
+npm-debug.log*
+
+# Build/dist (caso futuramente usar bundler)
+dist/
+build/
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.*.local
+
+# Arquivos temporários e de editor
 *.log
 *.tmp
 *.swp
+*.swo
+.vscode/settings.json
+.idea/
 
-# Configurações locais
-.DS_Store
-Thumbs.db
+# Cache
+.cache/
+
