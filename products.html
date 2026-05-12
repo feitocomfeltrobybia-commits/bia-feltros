@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EBXNZ5Y7X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2EBXNZ5Y7X');
-  </script>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ateliê Bia Feltros — Todos os produtos artesanais em feltro. Bonecas, guirlandas, livros sensoriais, kits e muito mais." />
+  <meta name="description" content="Catálogo completo do Ateliê Bia Feltros — bonecas, guirlandas, livros sensoriais, kits e produtos especiais. Tudo feito à mão com feltro de qualidade." />
   <title>Produtos — Ateliê Bia Feltros</title>
+
+  <!-- Open Graph (compartilhamento social) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://feitocomfeltrobybia-commits.github.io/bia-feltros/products.html" />
+  <meta property="og:title" content="Produtos — Ateliê Bia Feltros" />
+  <meta property="og:description" content="Bonecas, guirlandas, livros sensoriais e produtos especiais feitos à mão. Veja o catálogo completo!" />
+  <meta property="og:image" content="https://feitocomfeltrobybia-commits.github.io/bia-feltros/assets/atelie-bia-feltros-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Produtos — Ateliê Bia Feltros" />
+  <meta name="twitter:description" content="Catálogo artesanal em feltro feito à mão." />
+  <meta name="twitter:image" content="https://feitocomfeltrobybia-commits.github.io/bia-feltros/assets/atelie-bia-feltros-logo.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://feitocomfeltrobybia-commits.github.io/bia-feltros/products.html" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/atelie-bia-feltros-logo.png" />
@@ -29,9 +34,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Great+Vibes&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Analytics 4 — config ativado apenas após consentimento LGPD (ver script.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EBXNZ5Y7X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Schema.org — LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ateliê Bia Feltros",
+    "description": "Peças artesanais em feltro feitas à mão com amor. Bonecas, guirlandas, livros sensoriais e muito mais.",
+    "url": "https://feitocomfeltrobybia-commits.github.io/bia-feltros",
+    "telephone": "+5519953321819",
+    "email": "feitocomfeltrobybia@gmail.com",
+    "image": "https://feitocomfeltrobybia-commits.github.io/bia-feltros/assets/atelie-bia-feltros-logo.png",
+    "sameAs": ["https://instagram.com/biankacriz"],
+    "address": { "@type": "PostalAddress", "addressCountry": "BR" }
+  }
+  </script>
 </head>
 
 <body>
+
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
 
   <!-- ===== HEADER ===== -->
   <header class="header">
@@ -50,20 +81,18 @@
       </button>
 
       <nav class="main-navigation" id="main-nav" aria-label="Navegação principal">
-        <ul class="nav-links" role="list">
+        <ul class="nav-links">
           <li><a href="index.html">Início</a></li>
-          <li><a href="products.html" class="active" aria-current="page">Produtos</a></li>
+          <li><a href="products.html">Produtos</a></li>
           <li><a href="about.html">Sobre</a></li>
           <li><a href="contact.html">Contato</a></li>
-          <li class="nav-cta">
-          </li>
         </ul>
       </nav>
 
     </div>
   </header>
 
-  <main>
+  <main id="conteudo-principal">
 
     <!-- ===== HERO ===== -->
     <section class="hero" aria-label="Nossos Produtos">

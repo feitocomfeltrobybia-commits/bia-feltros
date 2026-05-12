@@ -1,4 +1,4 @@
-﻿// Constantes de contato - altere aqui para atualizar em todo o site
+// Constantes de contato - altere aqui para atualizar em todo o site
 const CONTACT_INFO = {
     whatsapp: '5519953321819',
     email: 'feitocomfeltrobybia@gmail.com',
@@ -14,7 +14,107 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSearch();
     updateContactLinks();
+    initConsentBanner();
 });
+
+// ============================================================
+// ANALYTICS — ativado apenas após consentimento LGPD
+// ============================================================
+
+function enableAnalytics() {
+    if (typeof gtag === 'function') {
+        gtag('config', 'G-2EBXNZ5Y7X');
+    }
+}
+
+// ============================================================
+// LGPD — banner de consentimento de cookies
+// ============================================================
+
+function initConsentBanner() {
+    const consent = localStorage.getItem('lgpd_consent');
+    if (consent === 'accepted') { enableAnalytics(); return; }
+    if (consent === 'refused') return;
+
+    const banner = document.createElement('div');
+    banner.id = 'lgpd-banner';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Aviso de privacidade e cookies');
+
+    const content = document.createElement('div');
+    content.className = 'lgpd-content';
+
+    const text = document.createElement('p');
+    text.appendChild(document.createTextNode('Este site usa cookies do Google Analytics para analisar o tráfego. Conforme a '));
+    const strong = document.createElement('strong');
+    strong.textContent = 'LGPD';
+    text.appendChild(strong);
+    text.appendChild(document.createTextNode(', precisamos do seu consentimento antes de coletar dados.'));
+
+    const buttons = document.createElement('div');
+    buttons.className = 'lgpd-buttons';
+
+    const acceptBtn = document.createElement('button');
+    acceptBtn.id = 'lgpd-accept';
+    acceptBtn.className = 'lgpd-btn lgpd-accept';
+    acceptBtn.textContent = 'Aceitar';
+
+    const refuseBtn = document.createElement('button');
+    refuseBtn.id = 'lgpd-refuse';
+    refuseBtn.className = 'lgpd-btn lgpd-refuse';
+    refuseBtn.textContent = 'Recusar';
+
+    buttons.append(acceptBtn, refuseBtn);
+    content.append(text, buttons);
+    banner.appendChild(content);
+    document.body.appendChild(banner);
+
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('lgpd_consent', 'accepted');
+        enableAnalytics();
+        banner.remove();
+    });
+
+    refuseBtn.addEventListener('click', () => {
+        localStorage.setItem('lgpd_consent', 'refused');
+        banner.remove();
+    });
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+
+function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Cria um DocumentFragment com o texto onde o termo buscado fica em negrito.
+// Não usa innerHTML — evita XSS.
+function highlightMatch(text, query) {
+    const fragment = document.createDocumentFragment();
+    const regex = new RegExp(escapeRegex(query), 'gi');
+    let lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        const strong = document.createElement('strong');
+        strong.style.color = 'var(--rosa)';
+        strong.textContent = match[0];
+        fragment.appendChild(strong);
+        lastIndex = regex.lastIndex;
+    }
+    if (lastIndex < text.length) {
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+    return fragment;
+}
+
+// ============================================================
+// NAVEGAÇÃO ATIVA
+// ============================================================
 
 function setActiveNavigationLink() {
     const navLinks = document.querySelectorAll('.nav-links a[href]');
@@ -36,6 +136,10 @@ function setActiveNavigationLink() {
     });
 }
 
+// ============================================================
+// SCROLL SUAVE
+// ============================================================
+
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (event) {
@@ -48,6 +152,10 @@ function initSmoothScroll() {
         });
     });
 }
+
+// ============================================================
+// ANIMAÇÕES DE ENTRADA (fade-in)
+// ============================================================
 
 function initFadeAnimations() {
     const elements = document.querySelectorAll('.card, .produto-card, .cat-card, .depoimento-card, .hero-content, .form-contato, section h2, .footer');
@@ -65,6 +173,10 @@ function initFadeAnimations() {
         observer.observe(element);
     });
 }
+
+// ============================================================
+// CARROSSEL DE IMAGENS
+// ============================================================
 
 function initCarousels() {
     document.querySelectorAll('.carousel').forEach(carousel => {
@@ -108,29 +220,33 @@ function initCarousels() {
     });
 }
 
+// ============================================================
+// LIGHTBOX — com armadilha de foco e tecla Escape
+// ============================================================
 
 function initImageLightbox() {
-    // Para carrosséis, adicionar listener ao container para pegar a imagem ativa
     document.querySelectorAll('.carousel').forEach(carousel => {
         carousel.addEventListener('click', (e) => {
             if (e.target.tagName === 'IMG') {
                 const activeImage = carousel.querySelector('img.active');
                 if (activeImage) {
-                    openImageModal(activeImage.src, activeImage.alt);
+                    openImageModal(activeImage.src, activeImage.alt, e.target);
                 }
             }
         });
     });
 
-    // Para imagens simples (sem carrossel)
     document.querySelectorAll('.produto-card img:not(.carousel img), .card img:not(.carousel img)').forEach(image => {
-        image.addEventListener('click', () => openImageModal(image.src, image.alt));
+        image.addEventListener('click', () => openImageModal(image.src, image.alt, image));
     });
 }
 
-function openImageModal(src, alt) {
+function openImageModal(src, alt, triggerElement) {
     const modal = document.createElement('div');
     modal.className = 'image-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', alt || 'Imagem ampliada');
     modal.tabIndex = -1;
 
     const modalImage = document.createElement('img');
@@ -142,20 +258,30 @@ function openImageModal(src, alt) {
     closeButton.type = 'button';
     closeButton.innerHTML = '&times;';
     closeButton.setAttribute('aria-label', 'Fechar visualização de imagem');
-    closeButton.addEventListener('click', () => closeModal(modal));
 
-    modal.addEventListener('click', event => {
-        if (event.target === modal) closeModal(modal);
-    });
+    const close = () => {
+        modal.remove();
+        document.removeEventListener('keydown', handleKey);
+        if (triggerElement) triggerElement.focus();
+    };
+
+    const handleKey = (e) => {
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key === 'Tab') { e.preventDefault(); closeButton.focus(); }
+    };
+
+    closeButton.addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', handleKey);
 
     modal.append(modalImage, closeButton);
     document.body.appendChild(modal);
     closeButton.focus();
 }
 
-function closeModal(modal) {
-    modal.remove();
-}
+// ============================================================
+// MENU MOBILE
+// ============================================================
 
 function initMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
@@ -174,9 +300,7 @@ function initMobileMenu() {
         }
     });
 
-    // Fechar menu ao clicar em um link
-    const navLinks = nav.querySelectorAll('a');
-    navLinks.forEach(link => {
+    nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('open');
             toggle.setAttribute('aria-expanded', 'false');
@@ -184,41 +308,40 @@ function initMobileMenu() {
     });
 }
 
+// ============================================================
+// ATUALIZAR LINKS DE CONTATO
+// ============================================================
+
 function updateContactLinks() {
-    // Atualizar todos os links de WhatsApp (mantendo o texto do produto se existir)
     document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
         const url = new URL(link.href);
         const currentText = url.searchParams.get('text') || '';
-
-        // Se já tem um texto (de produto), mantém. Caso contrário, usa genérico
-        let message = currentText || 'Olá, gostaria de mais informações!';
-
+        const message = currentText || 'Olá, gostaria de mais informações!';
         link.href = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
     });
 
-    // Atualizar todos os links de email
     document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
         link.href = `mailto:${CONTACT_INFO.email}`;
     });
 
-    // Atualizar links do Instagram e YouTube no rodapé se necessário
-    const instaLink = document.querySelector('a[href*="instagram"]');
-    if (instaLink) {
-        instaLink.href = CONTACT_INFO.instagram;
-    }
+    // Atualiza todos os links do Instagram (não apenas o primeiro)
+    document.querySelectorAll('a[href*="instagram"]').forEach(link => {
+        link.href = CONTACT_INFO.instagram;
+    });
 
-    // Atualizar formulário de contato
     const contactForm = document.querySelector('form[action*="formsubmit"]');
     if (contactForm) {
         contactForm.action = `https://formsubmit.co/${CONTACT_INFO.email}`;
     }
 }
 
-function extractProductsFromPage() {
-    const productsSection = document.querySelector('#produtos');
-    if (!productsSection) return [];
+// ============================================================
+// BUSCA DE PRODUTOS
+// ============================================================
 
-    return Array.from(productsSection.querySelectorAll('.card'))
+// Coleta todos os cards de produto da página, independente da seção
+function extractProductsFromPage() {
+    return Array.from(document.querySelectorAll('.produto-card, .card'))
         .map(card => {
             const title = card.querySelector('h3')?.textContent?.trim();
             return title ? { name: title, element: card } : null;
@@ -233,10 +356,8 @@ function initSearch() {
 
     if (!searchInput || !searchForm) return;
 
-    // Extrair todos os produtos da página (se estiver em products.html)
     const allProducts = extractProductsFromPage();
 
-    // Pré-preencher busca se vier de query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('search');
     if (searchQuery) {
@@ -246,111 +367,108 @@ function initSearch() {
         }
     }
 
-    // Busca em tempo real
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.trim();
 
         if (query.length === 0) {
-            suggestionsList.classList.remove('active');
+            if (suggestionsList) suggestionsList.classList.remove('active');
             showAllProducts();
             return;
         }
 
         if (allProducts.length === 0) {
-            // Se não tem produtos na página (não está em products.html)
-            suggestionsList.classList.remove('active');
+            if (suggestionsList) suggestionsList.classList.remove('active');
             return;
         }
 
-        // Filtrar produtos
         const filtered = allProducts.filter(product =>
             product.name.toLowerCase().includes(query.toLowerCase())
         );
 
-        // Mostrar sugestões
         if (filtered.length > 0) {
-            displaySuggestions(filtered, suggestionsList, query);
+            if (suggestionsList) displaySuggestions(filtered, suggestionsList, query);
             filterAndDisplayProducts(query);
         } else {
-            // Nenhum resultado encontrado
-            displayNoResults(suggestionsList, query);
+            if (suggestionsList) displayNoResults(suggestionsList, query);
         }
     });
 
-    // Fechar sugestões ao clicar fora
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-container')) {
+        if (suggestionsList && !e.target.closest('.search-container')) {
             suggestionsList.classList.remove('active');
         }
     });
 
-    // Submit do formulário
     searchForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const query = searchInput.value.trim();
 
         if (!query) {
-            alert('Por favor, digite o nome do produto que deseja buscar.');
+            showSearchError('Digite o nome do produto que deseja buscar.');
             return;
         }
 
-        // Se já está em products.html
         if (window.location.pathname.includes('products.html')) {
-            // Apenas filtra
             filterAndDisplayProducts(query);
             return;
         }
 
-        // Se está em outra página, verifica se tem produtos antes de redirecionar
-        const checkProducts = extractProductsFromPage();
-        if (checkProducts.length === 0) {
-            // Redireciona para products
-            window.location.href = `products.html?search=${encodeURIComponent(query)}`;
-        }
+        window.location.href = `products.html?search=${encodeURIComponent(query)}`;
     });
+}
+
+function showSearchError(message) {
+    const input = document.getElementById('search-input');
+    if (!input) return;
+
+    let errorEl = document.getElementById('search-error');
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.id = 'search-error';
+        errorEl.setAttribute('role', 'alert');
+        errorEl.className = 'search-error-msg';
+        input.closest('form, .search-container')?.insertAdjacentElement('afterend', errorEl)
+            ?? input.parentNode.insertAdjacentElement('afterend', errorEl);
+    }
+    errorEl.textContent = message;
+    setTimeout(() => { if (errorEl.parentNode) errorEl.remove(); }, 4000);
 }
 
 function displayNoResults(container, query) {
     container.innerHTML = '';
 
-    const noResult = document.createElement('div');
-    noResult.className = 'search-no-results';
-    noResult.innerHTML = `
-        <div style="padding: 20px; text-align: center;">
-            <p style="margin-bottom: 8px; font-weight: 500;">Nenhum produto encontrado</p>
-            <p style="font-size: 0.85rem; opacity: 0.7;">"${query}" não corresponde a nenhum produto</p>
-        </div>
-    `;
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'padding: 20px; text-align: center;';
 
-    container.appendChild(noResult);
+    const p1 = document.createElement('p');
+    p1.style.cssText = 'margin-bottom: 8px; font-weight: 500;';
+    p1.textContent = 'Nenhum produto encontrado';
+
+    const p2 = document.createElement('p');
+    p2.style.cssText = 'font-size: 0.85rem; opacity: 0.7;';
+    p2.textContent = `"${query}" não corresponde a nenhum produto`;
+
+    wrapper.append(p1, p2);
+    container.appendChild(wrapper);
     container.classList.add('active');
 }
 
 function displaySuggestions(products, container, query) {
     container.innerHTML = '';
 
-    // Mostrar até 6 sugestões
     products.slice(0, 6).forEach(product => {
         const item = document.createElement('div');
         item.className = 'search-suggestion-item';
-
-        // Destacar o termo buscado no nome do produto
-        const regex = new RegExp(`(${query})`, 'gi');
-        const highlightedName = product.name.replace(regex, '<strong style="color: var(--rosa);">$1</strong>');
-
-        item.innerHTML = highlightedName;
+        item.appendChild(highlightMatch(product.name, query));
 
         item.addEventListener('click', () => {
             document.getElementById('search-input').value = product.name;
             container.classList.remove('active');
 
-            // Rolar até o produto
             if (product.element) {
                 product.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 product.element.classList.add('highlight');
-                setTimeout(() => {
-                    product.element.classList.remove('highlight');
-                }, 2000);
+                setTimeout(() => product.element.classList.remove('highlight'), 2000);
             }
         });
 
@@ -360,9 +478,7 @@ function displaySuggestions(products, container, query) {
     if (products.length > 6) {
         const moreItem = document.createElement('div');
         moreItem.className = 'search-suggestion-item';
-        moreItem.style.textAlign = 'center';
-        moreItem.style.fontStyle = 'italic';
-        moreItem.style.color = 'var(--cinza)';
+        moreItem.style.cssText = 'text-align: center; font-style: italic; color: var(--cinza);';
         moreItem.textContent = `+${products.length - 6} resultado(s)`;
         container.appendChild(moreItem);
     }
@@ -371,14 +487,9 @@ function displaySuggestions(products, container, query) {
 }
 
 function filterAndDisplayProducts(query) {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
+    document.querySelectorAll('.card').forEach(card => {
         const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-        if (title.includes(query.toLowerCase())) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+        card.style.display = title.includes(query.toLowerCase()) ? 'block' : 'none';
     });
 }
 
